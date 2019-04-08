@@ -2,20 +2,28 @@
 
 
 [[projects]]
-  digest = "1:bff7b2530f02b143623e260c11df5cbf34e0faeaca6aa001a8be31f333518ca9"
+  digest = "1:573fa46f8d413d4bc3f7cc5e86b2c43cb21559f4fb0a19d9874d228e28fdc07c"
   name = "github.com/PuerkitoBio/goquery"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a86ea073017a6beddef78c8659e7224e8ca634b0"
-  version = "v1.4.0"
+  revision = "2d2796f41742ece03e8086188fa4db16a3a0b458"
+  version = "v1.5.0"
 
 [[projects]]
-  digest = "1:3120dc3e010e3e7169d8f199f6a402f1ff4a17a16ae269b6e91efa3b9e101c9c"
+  digest = "1:15abcbccf7a42970f0a9801cd55c478f5615c720b2cde96b0218cf5cad5aaf44"
+  name = "github.com/agflow/agnumber"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "a22d25c13b7f64ca64c173e2072614c3e4ec153d"
+  version = "v0.2.2"
+
+[[projects]]
+  digest = "1:cff51b9fd7fbd24e3dcc6d9ae2a829fb21fab9fd3a5ad5013d1fd61972b3eb26"
   name = "github.com/agflow/agstring"
   packages = ["."]
   pruneopts = "UT"
-  revision = "715acd1b86504996c3e9ac20b696dd16f797323b"
-  version = "v1.6.0"
+  revision = "d13b55efdd3917de11735e6917b16be8c542c832"
+  version = "v1.9.0"
 
 [[projects]]
   digest = "1:66b3310cf22cdc96c35ef84ede4f7b9b370971c4025f394c89a2638729653b11"
@@ -61,7 +69,7 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:c52d48fe752736ae45b72959e1e4fc1a5b60d5b56f8fad42c58414daab5f309d"
+  digest = "1:8ff03ccc603abb0d7cce94d34b613f5f6251a9e1931eba1a3f9888a9029b055c"
   name = "github.com/stretchr/testify"
   packages = [
     "assert",
@@ -69,8 +77,8 @@
     "suite",
   ]
   pruneopts = "UT"
-  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
-  version = "v1.2.1"
+  revision = "ffdc059bfe9ce6a4e144ba849dbedead332c6053"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "master"
@@ -96,6 +104,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/PuerkitoBio/goquery",
+    "github.com/agflow/agnumber",
     "github.com/agflow/agstring",
     "github.com/pkg/errors",
     "github.com/stretchr/testify/require",

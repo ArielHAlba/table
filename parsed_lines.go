@@ -1,6 +1,7 @@
 package table
 
 import (
+	"github.com/agflow/agnumber"
 	"github.com/pkg/errors"
 )
 
@@ -64,13 +65,6 @@ func (p Parsed) SkipOneLine() Parsed {
 	return p[1:]
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 // Nth returns the nth parsed element
 // if there is no element it returns an error
 func (p Parsed) Nth(n int) ([]string, error) {
@@ -84,14 +78,14 @@ func (p Parsed) nthFrom(from int) (Parsed, error) {
 	if from < 0 || (len(p) == 0 && from > 0) {
 		return nil, errors.Errorf("index out of range")
 	}
-	return p[min(from, len(p)):], nil
+	return p[agnumber.Min(from, len(p)):], nil
 }
 
 func (p Parsed) nthTo(to int) (Parsed, error) {
 	if to < 0 || (len(p) == 0 && to > 0) {
 		return nil, errors.Errorf("index out of range")
 	}
-	return p[:min(len(p), to)], nil
+	return p[:agnumber.Min(len(p), to)], nil
 }
 
 // NthRange returns a slice of parsed elements, depending on the `from`, `to` range

@@ -1,6 +1,6 @@
 [[constraint]]
   name = "github.com/PuerkitoBio/goquery"
-  version = "1.4.0"
+  version = "v1.5.0"
 
 [[constraint]]
   name = "github.com/pkg/errors"
@@ -8,11 +8,15 @@
 
 [[constraint]]
   name = "github.com/stretchr/testify"
-  version = "1.2.1"
+  version = "1.3.0"
 
 [[constraint]]
   name = "github.com/agflow/agstring"
-  version = "1.6.0"
+  version = "1.9.0"
+
+[[constraint]]
+  name = "github.com/agflow/agnumber"
+  version = "v0.2.2"
 
 [[constraint]]
   branch = "master"

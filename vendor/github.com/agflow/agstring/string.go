@@ -8,7 +8,7 @@ import (
 
 	"github.com/mozillazg/go-unidecode"
 	"github.com/pkg/errors"
-	"github.com/thoas/go-funk"
+	funk "github.com/thoas/go-funk"
 )
 
 // ReplaceMultispace replaces multiple spaces with one space and
@@ -140,46 +140,6 @@ func RemoveNonAlnum(s string) string {
 	return nonAlphanumRegexp.ReplaceAllLiteralString(s, "")
 }
 
-// ContainsAll checks if given slice contains all searched strings
-func ContainsAll(holder []string, searched ...string) bool {
-	for _, s := range searched {
-		if !funk.ContainsString(holder, s) {
-			return false
-		}
-	}
-	return true
-}
-
-// StringContainsAll checks if given string contains all searched strings
-func StringContainsAll(holder string, searched ...string) bool {
-	for _, s := range searched {
-		if !strings.Contains(holder, s) {
-			return false
-		}
-	}
-	return true
-}
-
-// ContainsAny checks if source slice contains any of given strings
-func ContainsAny(src []string, qs ...string) bool {
-	for _, q := range qs {
-		if funk.ContainsString(src, q) {
-			return true
-		}
-	}
-	return false
-}
-
-// StringContainsAny is similar to ContainsAny but source is a string
-func StringContainsAny(s string, ls ...string) bool {
-	for _, e := range ls {
-		if strings.Contains(s, e) {
-			return true
-		}
-	}
-	return false
-}
-
 // RemoveDiacritics removes diacritics from a string. If non-alphanumeric character is
 // encountered diacritics are removed from it. If removing diacritics is not possible, character
 // is removed.
@@ -284,6 +244,12 @@ func nonempty(ls []string, t Transform) []string {
 // IsEmpty checks if slice contains only empty strings
 func IsEmpty(ls ...string) bool { return len(NonEmpty(ls...)) == 0 }
 
+// IsEqual checks if two slices are equal after applying transforms on 2nd slice
+func IsEqual(source, other []string, transforms ...Transform) bool {
+	return (source == nil && other == nil) ||
+		funk.Equal(source, Map(other, transforms...))
+}
+
 // RemoveAllDiacritics removes diacritics from all strings in slice
 func RemoveAllDiacritics(ls ...string) []string { return Map(ls, RemoveDiacritics) }
 
@@ -341,14 +307,13 @@ func ReplaceNewline(s string, replacements ...string) string {
 }
 
 // Map runs given modifiers for each item in slice and returns a new slice
-func Map(ls []string, funcs ...func(string) string) []string {
+func Map(ls []string, transforms ...Transform) []string {
 	out := make([]string, len(ls))
 	for i, s := range ls {
-		tmp := s
-		for _, f := range funcs {
-			tmp = f(tmp)
+		for _, transform := range transforms {
+			s = transform(s)
 		}
-		out[i] = tmp
+		out[i] = s
 	}
 	return out
 }
