@@ -53,6 +53,14 @@ func parseAligned(lines []string, nbColumn int) (Parsed, error) {
 	return result, nil
 }
 
+func ParseAlignedLines(lines []string, options ...*Options) ([][]string, error) {
+	parsed, err := ParseAligned(lines, options...)
+	if err != nil {
+		return nil, err
+	}
+	return parsed.Lines(), err
+}
+
 func splitByCols(line string, cols []column) []string {
 	splitted := make([]string, len(cols))
 	for i, c := range cols {

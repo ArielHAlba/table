@@ -168,6 +168,19 @@ aa    bb  cc`
 	}, result.Lines())
 }
 
+func (s *tableSuite) TestParseAlignedLines() {
+	lines := `
+aaa  bb   ccc
+aa    bb  cc`
+	result, err := ParseAlignedLines(strings.Split(lines, "\n"), &Options{NumberOfColumns: []int{3}})
+	require.Nil(s.T(), err)
+	require.Equal(s.T(), [][]string{
+		{"", "", ""}, // first line is empty
+		{"aaa ", " bb  ", " ccc"},
+		{"aa  ", "  bb ", " cc"},
+	}, result)
+}
+
 func (s *tableSuite) TestParseAlignedExtendsColumnIfPossible() {
 	lines := `
 aax bb
