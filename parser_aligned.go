@@ -53,6 +53,8 @@ func parseAligned(lines []string, nbColumn int) (Parsed, error) {
 	return result, nil
 }
 
+// ParseAlignedLines parse a table which can be parsed by ParseAligned(),
+// returning a slice with just the parsed lines
 func ParseAlignedLines(lines []string, options ...*Options) ([][]string, error) {
 	parsed, err := ParseAligned(lines, options...)
 	if err != nil {
