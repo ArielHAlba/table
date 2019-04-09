@@ -60,7 +60,7 @@ func ParseAlignedLines(lines []string, options ...*Options) ([][]string, error) 
 	if err != nil {
 		return nil, err
 	}
-	return parsed.Lines(), err
+	return parsed.Lines(), nil
 }
 
 func splitByCols(line string, cols []column) []string {
